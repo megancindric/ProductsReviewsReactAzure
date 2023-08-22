@@ -1,8 +1,10 @@
-import logo from "./logo.svg";
+import logo from "./sun.svg";
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import ProductList from "./components/ProductList/ProductList";
 function App() {
+  const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -11,7 +13,7 @@ function App() {
       let response = await axios.get(
         "http://products-reviews-api-mac.azurewebsites.net/api/Product"
       );
-      console.log(response.data);
+      setAllProducts(response.data);
     } catch (e) {
       console.log("Error in getAllProducts: ", e);
     }
@@ -21,6 +23,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>Welcome to the Product Review Site!</p>
+        <ProductList allProducts={allProducts} />
       </header>
     </div>
   );
