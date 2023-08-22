@@ -13,7 +13,7 @@ function App() {
   async function getAllProducts() {
     try {
       let response = await axios.get(
-        "http://products-reviews-api-mac.azurewebsites.net/api/Product"
+        "https://products-reviews-api-mac.azurewebsites.net/api/Product"
       );
       setAllProducts(response.data);
     } catch (e) {
@@ -24,7 +24,7 @@ function App() {
   async function addNewProduct(newProduct) {
     try {
       let response = await axios.post(
-        "http://products-reviews-api-mac.azurewebsites.net/api/Product",
+        "https://products-reviews-api-mac.azurewebsites.net/api/Product",
         newProduct
       );
       getAllProducts(response.data);
